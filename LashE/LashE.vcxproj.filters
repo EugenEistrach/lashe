@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Headerdateien">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Ressourcendateien">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="anax">
+      <UniqueIdentifier>{80fdf27a-4b8b-4133-ba00-1128dab7cf05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="anax\Header">
+      <UniqueIdentifier>{c4df258c-c8c0-4b0b-aeab-a5408f64a89c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="anax\Source">
+      <UniqueIdentifier>{12c5d204-7d9d-4748-9f63-6d5c03ad7f7e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="anax\World.hpp">
+      <Filter>anax\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="anax\anax.hpp">
+      <Filter>anax\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="anax\detail\AnaxAssert.hpp">
+      <Filter>anax\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="anax\detail\BaseSystem.hpp">
+      <Filter>anax\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="anax\detail\ClassTypeId.hpp">
+      <Filter>anax\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="anax\Component.hpp">
+      <Filter>anax\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="anax\detail\ComponentTypeList.hpp">
+      <Filter>anax\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="anax\Config.hpp">
+      <Filter>anax\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="anax\util\ContainerUtils.hpp">
+      <Filter>anax\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="anax\Entity.hpp">
+      <Filter>anax\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="anax\detail\EntityComponentStorage.hpp">
+      <Filter>anax\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="anax\detail\EntityIdPool.hpp">
+      <Filter>anax\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="anax\detail\Filter.hpp">
+      <Filter>anax\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="anax\FilterOptions.hpp">
+      <Filter>anax\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="anax\System.hpp">
+      <Filter>anax\Header</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="anax\detail\BaseSystem.cpp">
+      <Filter>anax\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="anax\Entity.cpp">
+      <Filter>anax\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="anax\detail\EntityComponentStorage.cpp">
+      <Filter>anax\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="anax\detail\EntityIdPool.cpp">
+      <Filter>anax\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="anax\detail\Filter.cpp">
+      <Filter>anax\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="anax\World.cpp">
+      <Filter>anax\Source</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
