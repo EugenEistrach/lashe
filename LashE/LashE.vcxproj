@@ -77,6 +77,14 @@
     <IncludePath>$(SolutionDir)Deps/Include/;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)Deps/Lib/Release/;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(SolutionDir)deps/Include/;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)deps/Lib/Debug;$(SolutionDir)Debug/;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(SolutionDir)deps/Include/;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)deps/Lib/Release;$(SolutionDir)Release/;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>
@@ -105,6 +113,9 @@
     <Link>
       <SubSystem>Windows</SubSystem>
     </Link>
+    <Lib>
+      <AdditionalDependencies>sfml-system-d.lib;sfml-window-d.lib;sfml-graphics-d.lib;sfml-audio-d.lib;sfml-network-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -142,11 +153,17 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <Lib>
+      <AdditionalDependencies>sfml-system.lib;sfml-window.lib;sfml-graphics.lib;sfml-audio.lib;sfml-network.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Action.h" />
+    <ClInclude Include="ActionMap.h" />
+    <ClInclude Include="ActionTarget.h" />
     <ClInclude Include="anax\anax.hpp" />
     <ClInclude Include="anax\Component.hpp" />
     <ClInclude Include="anax\Config.hpp" />
@@ -162,14 +179,22 @@
     <ClInclude Include="anax\System.hpp" />
     <ClInclude Include="anax\util\ContainerUtils.hpp" />
     <ClInclude Include="anax\World.hpp" />
+    <ClInclude Include="IGame.h" />
+    <ClInclude Include="ResourceManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Action.cpp" />
+    <ClCompile Include="ActionTarget.tpl" />
     <ClCompile Include="anax\detail\BaseSystem.cpp" />
     <ClCompile Include="anax\detail\EntityComponentStorage.cpp" />
     <ClCompile Include="anax\detail\EntityIdPool.cpp" />
     <ClCompile Include="anax\detail\Filter.cpp" />
     <ClCompile Include="anax\Entity.cpp" />
     <ClCompile Include="anax\World.cpp" />
+    <ClCompile Include="IGame.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Action.tpl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -72,6 +72,21 @@
     <ClInclude Include="anax\System.hpp">
       <Filter>anax\Header</Filter>
     </ClInclude>
+    <ClInclude Include="IGame.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Action.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="ActionTarget.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="ActionMap.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="anax\detail\BaseSystem.cpp">
@@ -92,5 +107,19 @@
     <ClCompile Include="anax\World.cpp">
       <Filter>anax\Source</Filter>
     </ClCompile>
+    <ClCompile Include="IGame.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="Action.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionTarget.tpl">
+      <Filter>Headerdateien</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Action.tpl">
+      <Filter>Headerdateien</Filter>
+    </None>
   </ItemGroup>
 </Project>
