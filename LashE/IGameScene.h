@@ -4,6 +4,8 @@
 #include <SFML/Window/Event.hpp>
 #include <SFML/Graphics/Drawable.hpp>
 
+#include "anax/anax.hpp"
+
 namespace lshe
 {
 	//class IGame;
@@ -23,7 +25,13 @@ namespace lshe
 		virtual void update(sf::Time deltaTime) = 0;
 		virtual void unload() = 0;
 
+	protected:
+		anax::World m_EntityWorld;
+
 	private:
+		friend class SceneManager;
+		void updateEntityWorld() { m_EntityWorld.refresh(); }
+
 		//IGame* m_gamePtr;
 
 

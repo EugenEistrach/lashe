@@ -179,10 +179,17 @@
     <ClInclude Include="anax\System.hpp" />
     <ClInclude Include="anax\util\ContainerUtils.hpp" />
     <ClInclude Include="anax\World.hpp" />
+    <ClInclude Include="AnimationComponent.h" />
+    <ClInclude Include="AnimationSystem.h" />
     <ClInclude Include="IGame.h" />
     <ClInclude Include="IGameScene.h" />
+    <ClInclude Include="MovementSystem.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="SpriteComponent.h" />
+    <ClInclude Include="SpriteRenderingSystem.h" />
+    <ClInclude Include="TransformComponent.h" />
+    <ClInclude Include="VelocityComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Action.cpp" />
@@ -192,7 +199,10 @@
     <ClCompile Include="anax\detail\Filter.cpp" />
     <ClCompile Include="anax\Entity.cpp" />
     <ClCompile Include="anax\World.cpp" />
+    <ClCompile Include="AnimationSystem.cpp" />
     <ClCompile Include="IGame.cpp" />
+    <ClCompile Include="MovementSystem.cpp" />
+    <ClCompile Include="SpriteRenderingSystem.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -31,9 +31,6 @@
     <Filter Include="components\header">
       <UniqueIdentifier>{51d2c08a-ab8b-4075-88c7-2309f36a2443}</UniqueIdentifier>
     </Filter>
-    <Filter Include="components\source">
-      <UniqueIdentifier>{75f089ce-1a8c-483e-9cdb-f84117c5123a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="systems\header">
       <UniqueIdentifier>{f3f1e7fa-73f1-4bc0-a01a-c60d6456b909}</UniqueIdentifier>
     </Filter>
@@ -111,6 +108,27 @@
     <ClInclude Include="SceneManager.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="TransformComponent.h">
+      <Filter>components\header</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteComponent.h">
+      <Filter>components\header</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteRenderingSystem.h">
+      <Filter>systems\header</Filter>
+    </ClInclude>
+    <ClInclude Include="VelocityComponent.h">
+      <Filter>components\header</Filter>
+    </ClInclude>
+    <ClInclude Include="MovementSystem.h">
+      <Filter>systems\header</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationComponent.h">
+      <Filter>components\header</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationSystem.h">
+      <Filter>systems\header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="anax\detail\BaseSystem.cpp">
@@ -136,6 +154,15 @@
     </ClCompile>
     <ClCompile Include="Action.cpp">
       <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteRenderingSystem.cpp">
+      <Filter>systems\source</Filter>
+    </ClCompile>
+    <ClCompile Include="MovementSystem.cpp">
+      <Filter>systems\source</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationSystem.cpp">
+      <Filter>systems\source</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

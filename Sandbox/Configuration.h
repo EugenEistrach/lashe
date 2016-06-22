@@ -11,7 +11,7 @@ public:
 	Configuration(const Configuration&) = delete;
 	Configuration& operator=(const Configuration&) = delete;
 
-	enum Textures : int {PLAYER};
+	enum Textures : int {PLAYER, PLAYER_SHEET};
 	static lshe::ResourceManager<sf::Texture, int> textures;
 
 	enum PlayerInputs : int { UP, LEFT, RIGHT };

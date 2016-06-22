@@ -16,7 +16,7 @@ namespace lshe
 		SceneManager& operator=(const SceneManager&) = delete;
 		~SceneManager() { m_curScene->unload(); }
 		
-		void update(sf::Time deltaTime) { m_curScene->update(deltaTime); };
+		void update(sf::Time deltaTime) { m_curScene->updateEntityWorld(); m_curScene->update(deltaTime); };
 		//void draw() { m_curScene->draw(); };
 		void processEvent(const sf::Event& evt) { m_curScene->processEvent(evt); }
 		void processEvents() { m_curScene->processEvents(); }

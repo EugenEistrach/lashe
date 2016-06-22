@@ -15,6 +15,7 @@ void Configuration::initTextures()
 {
 	
 	textures.load(Textures::PLAYER, "assets/sprites/Ship.png");
+	textures.load(Textures::PLAYER_SHEET, "assets/sprites/player.png");
 }
 
 void Configuration::initPlayerInputs()

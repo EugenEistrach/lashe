@@ -1,6 +1,11 @@
 #pragma once
 #include <LashE/IGameScene.h>
+#include <LashE/AnimationSystem.h>
+#include <LashE/SpriteRenderingSystem.h>
+
 #include "Player.h"
+
+
 
 class SceneGame : public lshe::IGameScene
 {
@@ -19,6 +24,8 @@ public:
 private:
 	Player m_player;
 
+	lshe::AnimationSystem m_animationSystem;
+	lshe::SpriteRenderingSystem m_spriteRenderingSystem;
 	// Geerbt über IGameScene
 	
 };
