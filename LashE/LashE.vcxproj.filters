@@ -22,6 +22,24 @@
     <Filter Include="anax\Source">
       <UniqueIdentifier>{12c5d204-7d9d-4748-9f63-6d5c03ad7f7e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="components">
+      <UniqueIdentifier>{6055a31f-d84f-4650-93ab-b51d827be452}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="systems">
+      <UniqueIdentifier>{e43dd38c-0654-4d17-b583-6f695d955d34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="components\header">
+      <UniqueIdentifier>{51d2c08a-ab8b-4075-88c7-2309f36a2443}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="components\source">
+      <UniqueIdentifier>{75f089ce-1a8c-483e-9cdb-f84117c5123a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="systems\header">
+      <UniqueIdentifier>{f3f1e7fa-73f1-4bc0-a01a-c60d6456b909}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="systems\source">
+      <UniqueIdentifier>{5d270903-9cf7-4d7c-8f3a-35672a4ae935}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -87,6 +105,12 @@
     <ClInclude Include="ResourceManager.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="IGameScene.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="anax\detail\BaseSystem.cpp">
@@ -113,13 +137,5 @@
     <ClCompile Include="Action.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="ActionTarget.tpl">
-      <Filter>Headerdateien</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Action.tpl">
-      <Filter>Headerdateien</Filter>
-    </None>
   </ItemGroup>
 </Project>

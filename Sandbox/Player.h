@@ -19,9 +19,9 @@ public:
 	void update(sf::Time deltaTime);
 	
 	void processEvents();
-
-private:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+private:
+	
 	sf::Sprite m_ship;
 	sf::Vector2f m_velocity;
 	bool m_isMoving = false;

@@ -180,11 +180,12 @@
     <ClInclude Include="anax\util\ContainerUtils.hpp" />
     <ClInclude Include="anax\World.hpp" />
     <ClInclude Include="IGame.h" />
+    <ClInclude Include="IGameScene.h" />
     <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="SceneManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Action.cpp" />
-    <ClCompile Include="ActionTarget.tpl" />
     <ClCompile Include="anax\detail\BaseSystem.cpp" />
     <ClCompile Include="anax\detail\EntityComponentStorage.cpp" />
     <ClCompile Include="anax\detail\EntityIdPool.cpp" />
@@ -192,9 +193,6 @@
     <ClCompile Include="anax\Entity.cpp" />
     <ClCompile Include="anax\World.cpp" />
     <ClCompile Include="IGame.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Action.tpl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

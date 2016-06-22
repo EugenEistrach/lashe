@@ -1,19 +1,14 @@
 #pragma once
 
 #include <LashE/IGame.h>
-#include "Player.h"
 
 class Game : public lshe::IGame
 {
 public:
-	Game();
+	Game() : IGame("Lash-E Sandbox", 1440, 900) {}
 	virtual ~Game();
-protected:
-	void update(sf::Time delta) override;
-	void draw() override;
 
-	void processEvents() override;
-private:
-	Player m_player;
+	// Geerbt über IGame
+	virtual void init() override;
 };
 

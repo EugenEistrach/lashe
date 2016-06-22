@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include "SceneManager.h"
 
 namespace lshe
 {
@@ -9,21 +10,25 @@ namespace lshe
 	public:
 		IGame(const IGame&) = delete;
 		IGame& operator=(const IGame&) = delete;
-		IGame();
+		IGame() = delete;
+		IGame(const std::string& windowName, unsigned int width, unsigned int height);
+
+
 
 		void run(int fps = 60);
+		SceneManager& getSceneManager() { return m_sceneManager; }
 
 	private:
 		void gameLoop(int fps);
-		
+		void processEvents();
 		void render();
 		
 	protected:
-		virtual void processEvents();
-		virtual void update(sf::Time delta) = 0;
-		virtual void draw() = 0;
+		virtual void init() = 0;
+
 
 		sf::RenderWindow m_window;
+		SceneManager m_sceneManager;
 	};
 }
 

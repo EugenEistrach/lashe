@@ -20,21 +20,21 @@ namespace lshe
 
 		ActionTarget(const ActionMap<T>& map) : m_actionMap(map) {}
 		
-		bool processEvent(const sf::Event& event) const
+		bool processEvent(const sf::Event& evt) const
 		{
 			bool res = false;
 			for (auto& pair : m_eventsPoll)
 			{
-				if (m_actionMap.get(pair.first) == event)
+				if (m_actionMap.get(pair.first) == evt)
 				{
-					pair.second(event);
+					pair.second(evt);
 					res = true;
 					break;
 				}
 			}
 			return res;
 		}
-
+		
 		void processEvents() const
 		{
 			for (auto& pair : m_eventsRealTime)
