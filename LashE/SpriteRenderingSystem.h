@@ -2,7 +2,7 @@
 
 #include "anax/System.hpp"
 
-#include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/Graphics/RenderTarget.hpp><>
 
 #include "SpriteComponent.h"
 #include "TransformComponent.h"

@@ -22,7 +22,7 @@ namespace lshe
 			sf::Vector2u startPosition = sf::Vector2u(0,0);
 
 			/// The amount of frames in each direction
-			sf::Vector2u frameAmount = sf::Vector2u(3, 0);
+			sf::Vector2u frameAmount = sf::Vector2u(3, 1);
 
 			/// The frame rate you wish to play the state at
 			/// Set this to 0 if you wish to use the animation frame rate
@@ -32,6 +32,21 @@ namespace lshe
 #ifdef ANAX_VIRTUAL_DTORS_IN_COMPONENT
 		virtual ~AnimationComponent() { }
 #endif // ANAX_VIRTUAL_DTORS_IN_COMPONENT
+
+		AnimationComponent() {}
+		AnimationComponent(const AnimationComponent& other)
+		{
+			frameSize = other.frameSize;
+			states = other.states;
+			currentFrame = other.currentFrame;
+			playingState = other.playingState;
+			isPlaying = other.isPlaying;
+			repeat = other.repeat;
+			pingPong = other.pingPong;
+			m_frameAccumulator = other.m_frameAccumulator;
+			m_animateBackward = other.m_animateBackward;
+		}
+
 
 		/// Plays an animation
 		void play(int state)
@@ -43,8 +58,9 @@ namespace lshe
 		/// Resets the animation
 		void reset()
 		{
-			currentFrame.x = 0;
-			currentFrame.y = 0;
+			currentFrame = 0;
+			//currentFrame.x = 0;
+			//currentFrame.y = 0;
 		}
 
 		/// Pauses the animation
@@ -67,7 +83,9 @@ namespace lshe
 		std::map<int, State> states;
 
 		/// The current frame number (in both directions)
-		sf::Vector2u currentFrame = sf::Vector2u(0, 0);
+		//sf::Vector2u currentFrame = sf::Vector2u(0, 0);
+
+		unsigned int currentFrame = 0;
 
 		/// The currently playing animation state (represented as a string)
 		int playingState;
@@ -78,20 +96,15 @@ namespace lshe
 		/// Determines whether or not the animation should repeat
 		bool repeat = false;
 
+		bool pingPong = false;
+
 	private:
 
-		// used in implemenation
-		double m_frameAccumulator;
+		// used in implemention
+		double m_frameAccumulator = 0.0f;
+		bool m_animateBackward = false;
 
 		friend class AnimationSystem;
 
 	};
 }
-
-
-// AnimStates = {UP, DOWN, LEFT, RIGHT}
-
-// 
-// comp.setFrameSize(vec4, 32, 32)
-// comp.setFrames = vec(4, 4);
-// comp.setSpeed = 

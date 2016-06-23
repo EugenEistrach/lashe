@@ -14,8 +14,8 @@ public:
 	enum Textures : int {PLAYER, PLAYER_SHEET};
 	static lshe::ResourceManager<sf::Texture, int> textures;
 
-	enum PlayerInputs : int { UP, LEFT, RIGHT };
-	static lshe::ActionMap<int> player_inputs;
+	enum Direction : int { UP, LEFT, RIGHT, DOWN};
+	static lshe::ActionMap<int> inputs;
 
 
 	static void initialize();

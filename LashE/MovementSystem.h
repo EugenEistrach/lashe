@@ -7,6 +7,7 @@
 #include "TransformComponent.h"
 #include "VelocityComponent.h"
 
+
 namespace lshe
 {
 	struct TransformComponent;
@@ -14,6 +15,7 @@ namespace lshe
 
 	class MovementSystem : public anax::System < anax::Requires<TransformComponent, VelocityComponent>>
 	{
+	public:
 		void update(sf::Time deltaTime);
 	};
 

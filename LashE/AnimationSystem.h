@@ -19,6 +19,9 @@ namespace lshe
 
 	private:
 		unsigned int m_fps;
+
+		void animateForward();
+		void animateBackward();
 	};
 
 }

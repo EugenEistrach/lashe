@@ -1,5 +1,5 @@
 #include "MovementSystem.h"
-
+#include "DirectionComponent.h"
 
 namespace lshe
 {
@@ -10,8 +10,15 @@ namespace lshe
 		{
 			auto& transform = entity.getComponent<TransformComponent>().transform;
 			auto& velocity = entity.getComponent<VelocityComponent>().velocity;
-
-			transform.move(velocity * deltaTime.asSeconds());
+			
+			if (velocity != sf::Vector2f(0.f, 0.f))
+			{
+				if (entity.hasComponent<DirectionComponent>())
+				{
+					entity.getComponent<DirectionComponent>().setDirFromVec(velocity);
+				}
+				transform.move(velocity * deltaTime.asSeconds());
+			}
 		}
 	}
 }

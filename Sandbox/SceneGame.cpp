@@ -4,66 +4,136 @@
 #include <LashE/AnimationComponent.h>
 #include <LashE/SpriteComponent.h>
 #include <LashE/TransformComponent.h>
+#include <LashE/DirectionComponent.h>
+#include <LashE/VelocityComponent.h>
 
-#include "Configuration.h"
-
-enum AnimStates
-{
-	UP, DOWN, LEFT, RIGHT
-};
 
 void SceneGame::load()
 {
 
 	m_EntityWorld.addSystem(m_spriteRenderingSystem);
 	m_EntityWorld.addSystem(m_animationSystem);
+	m_EntityWorld.addSystem(m_movementSystem);
 
-	m_animationSystem.setFps(3);
+	m_animationSystem.setFps(4);
 
-	auto& test = m_EntityWorld.createEntity();
-
-	auto& transform = test.addComponent<lshe::TransformComponent>().transform;
-
-	transform.setPosition(200, 200);
-
-	auto& sprite = test.addComponent<lshe::SpriteComponent>().sprite;
-	sprite.setTexture(Configuration::textures.get(Configuration::Textures::PLAYER_SHEET));
-
-	auto& animation = test.addComponent<lshe::AnimationComponent>();
-	animation.repeat = true;
-	animation.isPlaying = true;
-
-	animation.states[UP] = lshe::AnimationComponent::State(sf::Vector2u(0, 0), sf::Vector2u(3, 0));
-	animation.states[LEFT] = lshe::AnimationComponent::State(sf::Vector2u(0, 32), sf::Vector2u(3, 0));
-	animation.states[RIGHT] = lshe::AnimationComponent::State(sf::Vector2u(0, 64), sf::Vector2u(3, 0));
-	animation.states[DOWN] = lshe::AnimationComponent::State(sf::Vector2u(0, 96), sf::Vector2u(3, 0));
-
-	animation.playingState = UP;
-
-	test.activate();
-	
+	initPlayer();
+	initInputs();
 }
 
 void SceneGame::processEvent(const sf::Event & evt)
 {
-	m_player.processEvent(evt);
+	ActionTarget::processEvent(evt);
 }
 
 void SceneGame::processEvents()
 {
-	m_player.processEvents();
+	ActionTarget::processEvents();
 }
 
 void SceneGame::update(sf::Time deltaTime)
 {
+
+	updatePlayer(deltaTime);
+	m_movementSystem.update(deltaTime);
+
+
+	auto& anim = m_EntityWorld.getEntity(m_playerId.index).getComponent<lshe::AnimationComponent>();
+	auto& dir = m_EntityWorld.getEntity(m_playerId.index).getComponent<lshe::DirectionComponent>();
+
+	anim.playingState = dir.direction;
+
 	m_animationSystem.update(deltaTime);
-	m_player.update(deltaTime);
 }
 
 void SceneGame::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
-	m_player.draw(target, states);
 	m_spriteRenderingSystem.draw(target, states);
+}
+
+void SceneGame::initPlayer()
+{
+	auto& player = m_EntityWorld.createEntity();
+	m_playerId = player.getId();
+
+	auto& transform = player.addComponent<lshe::TransformComponent>().transform;
+
+	transform.setPosition(200, 200);
+
+	auto& sprite = player.addComponent<lshe::SpriteComponent>().sprite;
+	sprite.setTexture(Configuration::textures.get(Configuration::Textures::PLAYER_SHEET));
+
+	//auto& animation = player.addComponent<lshe::AnimationComponent>();
+
+	lshe::AnimationComponent animation;
+
+
+	animation.repeat = true;
+	animation.isPlaying = true;
+	animation.frameSize = sf::Vector2u(32, 32);
+	animation.pingPong = true;
+
+	animation.states[lshe::DirectionComponent::DOWN] = lshe::AnimationComponent::State(sf::Vector2u(0, 0), sf::Vector2u(3, 1));
+	animation.states[lshe::DirectionComponent::LEFT] = lshe::AnimationComponent::State(sf::Vector2u(0, 32), sf::Vector2u(3, 1));
+	animation.states[lshe::DirectionComponent::RIGHT] = lshe::AnimationComponent::State(sf::Vector2u(0, 64), sf::Vector2u(3, 1));
+	animation.states[lshe::DirectionComponent::UP] = lshe::AnimationComponent::State(sf::Vector2u(0, 96), sf::Vector2u(3, 1));
+
+	animation.playingState = lshe::DirectionComponent::LEFT;
+
+
+	
+
+	player.addComponent<lshe::AnimationComponent>(animation);
+	
+	player.addComponent<lshe::DirectionComponent>();
+	player.addComponent<lshe::VelocityComponent>();
+
+	player.activate();
+
+}
+
+void SceneGame::initInputs()
+{
+
+
+}
+
+void SceneGame::updatePlayer(sf::Time deltaTime)
+{
+	auto& player = m_EntityWorld.getEntity(m_playerId.index);
+	auto& velocity = player.getComponent<lshe::VelocityComponent>();
+	auto& dir = player.getComponent<lshe::DirectionComponent>();
+
+	auto& anim = player.getComponent<lshe::AnimationComponent>();
+
+	anim.isPlaying = false;
+	velocity.velocity = sf::Vector2f(0.f, 0.f);
+
+	float speed = 100.0f;
+
+
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+	{
+		velocity.velocity.y -= 1;
+		anim.isPlaying = true;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	{
+		velocity.velocity.y += 1;
+		anim.isPlaying = true;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	{
+		velocity.velocity.x -= 1;
+		anim.isPlaying = true;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	{
+		velocity.velocity.x += 1;
+		anim.isPlaying = true;
+	}
+
+	velocity.velocity = lshe::VecMaths::Normalize(velocity.velocity) * speed;
 }
 
 void SceneGame::unload()

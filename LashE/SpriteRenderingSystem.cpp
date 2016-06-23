@@ -1,5 +1,6 @@
 #include "SpriteRenderingSystem.h"
 
+#include <iostream>
 
 namespace lshe
 {
@@ -12,7 +13,9 @@ namespace lshe
 			auto& sprite = entity.getComponent<SpriteComponent>().sprite;
 			auto& transform = entity.getComponent<TransformComponent>().transform;
 
+			
 
+				
 			sprite.setPosition(transform.getPosition());
 			sprite.setOrigin(transform.getOrigin());
 			sprite.setRotation(transform.getRotation());

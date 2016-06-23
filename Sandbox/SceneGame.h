@@ -2,15 +2,14 @@
 #include <LashE/IGameScene.h>
 #include <LashE/AnimationSystem.h>
 #include <LashE/SpriteRenderingSystem.h>
+#include <LashE/MovementSystem.h>
+#include <LashE/ActionTarget.h>
+#include "Configuration.h"
 
-#include "Player.h"
-
-
-
-class SceneGame : public lshe::IGameScene
+class SceneGame : public lshe::IGameScene, public lshe::ActionTarget<int>
 {
 public:
-	SceneGame() {}
+	SceneGame() : ActionTarget(Configuration::inputs){}
 	virtual ~SceneGame() {}
 
 	// Geerbt über IGameScene
@@ -22,11 +21,17 @@ public:
 	virtual void draw(sf::RenderTarget & target, sf::RenderStates states) const override;
 
 private:
-	Player m_player;
-
 	lshe::AnimationSystem m_animationSystem;
 	lshe::SpriteRenderingSystem m_spriteRenderingSystem;
+	lshe::MovementSystem m_movementSystem;
 	// Geerbt über IGameScene
-	
+
+	anax::Entity::Id m_playerId;
+
+	void initPlayer();
+	void initInputs();
+	void updatePlayer(sf::Time deltaTime);
+
+
 };
 

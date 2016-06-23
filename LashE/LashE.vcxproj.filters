@@ -37,6 +37,15 @@
     <Filter Include="systems\source">
       <UniqueIdentifier>{5d270903-9cf7-4d7c-8f3a-35672a4ae935}</UniqueIdentifier>
     </Filter>
+    <Filter Include="factories">
+      <UniqueIdentifier>{35cd9ec5-9869-48cd-a393-f038266d245a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="factories\header">
+      <UniqueIdentifier>{0e7624b5-646a-4d37-8ece-0814b90e2fcb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="factories\source">
+      <UniqueIdentifier>{39a41c95-2bcc-4188-a57a-2918375d5d12}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -128,6 +137,18 @@
     </ClInclude>
     <ClInclude Include="AnimationSystem.h">
       <Filter>systems\header</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectionComponent.h">
+      <Filter>components\header</Filter>
+    </ClInclude>
+    <ClInclude Include="VecMaths.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentFactory.h">
+      <Filter>factories\header</Filter>
+    </ClInclude>
+    <ClInclude Include="Components.h">
+      <Filter>components\header</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

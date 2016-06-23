@@ -1,5 +1,6 @@
 #include "AnimationSystem.h"
 
+#include <iostream>
 
 namespace lshe
 {
@@ -19,41 +20,68 @@ namespace lshe
 
 			if (animation.isPlaying && animationState)
 			{
-				animation.m_frameAccumulator += deltaTime.asSeconds() * (animationState->frameRate == 0 ? getFps() : animationState->frameRate);
-				animation.currentFrame.x = (int)animation.m_frameAccumulator;
+				auto curFrameX = animation.currentFrame % animationState->frameAmount.x;
+				auto curFrameY = animation.currentFrame / animationState->frameAmount.x;
+				auto maxFrames = animationState->frameAmount.x * animationState->frameAmount.y;
 
-				if (animation.currentFrame.x >= animationState->frameAmount.x)
+				float multiplicator = 1.0f;
+				if (animation.pingPong && animation.m_animateBackward)
+					multiplicator = -1.0f;
+
+				animation.m_frameAccumulator += deltaTime.asSeconds() * (animationState->frameRate == 0 ? getFps() : animationState->frameRate) * multiplicator;
+				animation.currentFrame = static_cast<int>(animation.m_frameAccumulator);
+
+				if (animation.pingPong)
 				{
-					// go to the next row (if necessary)
-					if (animationState->frameAmount.y)
+					if (animation.m_animateBackward)
 					{
-						if (animation.currentFrame.y >= animationState->frameAmount.y)
+						if (animation.m_frameAccumulator <= 0)
 						{
-							animation.currentFrame.y = 0;
-						}
-						else
-						{
-							++animation.currentFrame.y;
+							animation.m_animateBackward = false;
+							animation.currentFrame = 1;
+							animation.m_frameAccumulator = 1.0f;
 						}
 					}
-
-					// reset the animation
-					animation.currentFrame.x = 0;
-					animation.m_frameAccumulator = 0;
-
-					animation.isPlaying = animation.repeat;
+					else
+					{
+						if (animation.m_frameAccumulator >= maxFrames)
+						{
+							animation.m_animateBackward = true;
+							animation.currentFrame = maxFrames - 1;
+							animation.m_frameAccumulator = maxFrames - 1;
+						}
+					}
 				}
+				else
+				{
+					if (animation.m_frameAccumulator >= maxFrames || animation.m_frameAccumulator <= 0)
+					{
+						animation.currentFrame = 0;
+						animation.m_frameAccumulator = 0.0f;
+					}	
+				}
+
+				animation.isPlaying = animation.repeat;
 			}
 
 			if (animationState)
 			{
-				sf::IntRect rect(sf::Vector2i(animationState->startPosition.x + animation.frameSize.x * (int)animation.currentFrame.x,
-					animationState->startPosition.y + animation.frameSize.y * (int)animation.currentFrame.y),
+				auto curFrameX = animation.currentFrame % animationState->frameAmount.x;
+				auto curFrameY = animation.currentFrame / animationState->frameAmount.x;
+				
+				sf::IntRect rect(sf::Vector2i(animationState->startPosition.x + animation.frameSize.x * curFrameX,
+					animationState->startPosition.y + animation.frameSize.y * curFrameY),
 					sf::Vector2i(animation.frameSize));
-
 				sprite.setTextureRect(rect);
 			}
 		}
+	}
+	void AnimationSystem::animateForward()
+	{
+	}
+
+	void AnimationSystem::animateBackward()
+	{
 	}
 }
 
