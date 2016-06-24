@@ -12,7 +12,7 @@ int main()
 	Configuration::initialize();
 
 	Game game;
-	game.run();
+	game.run(60);
 
 	return 0;
 }

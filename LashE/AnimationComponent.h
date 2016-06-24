@@ -33,7 +33,7 @@ namespace lshe
 		virtual ~AnimationComponent() { }
 #endif // ANAX_VIRTUAL_DTORS_IN_COMPONENT
 
-		AnimationComponent() {}
+		/*AnimationComponent() {}
 		AnimationComponent(const AnimationComponent& other)
 		{
 			frameSize = other.frameSize;
@@ -45,7 +45,7 @@ namespace lshe
 			pingPong = other.pingPong;
 			m_frameAccumulator = other.m_frameAccumulator;
 			m_animateBackward = other.m_animateBackward;
-		}
+		}*/
 
 
 		/// Plays an animation
@@ -59,8 +59,6 @@ namespace lshe
 		void reset()
 		{
 			currentFrame = 0;
-			//currentFrame.x = 0;
-			//currentFrame.y = 0;
 		}
 
 		/// Pauses the animation
@@ -82,9 +80,7 @@ namespace lshe
 		/// A map to describe the animations the entity has
 		std::map<int, State> states;
 
-		/// The current frame number (in both directions)
-		//sf::Vector2u currentFrame = sf::Vector2u(0, 0);
-
+		/// The current frame number
 		unsigned int currentFrame = 0;
 
 		/// The currently playing animation state (represented as a string)

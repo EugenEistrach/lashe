@@ -25,14 +25,17 @@ namespace lshe
 				auto maxFrames = animationState->frameAmount.x * animationState->frameAmount.y;
 
 				float multiplicator = 1.0f;
+				// go backwards if ping pong animation and max reached
 				if (animation.pingPong && animation.m_animateBackward)
 					multiplicator = -1.0f;
 
+				// accumulate animation frame over delta time with fps as speed
 				animation.m_frameAccumulator += deltaTime.asSeconds() * (animationState->frameRate == 0 ? getFps() : animationState->frameRate) * multiplicator;
 				animation.currentFrame = static_cast<int>(animation.m_frameAccumulator);
 
 				if (animation.pingPong)
 				{
+					// Toggle backwards or forwards depending on accumulator state
 					if (animation.m_animateBackward)
 					{
 						if (animation.m_frameAccumulator <= 0)
@@ -54,6 +57,7 @@ namespace lshe
 				}
 				else
 				{
+					// keep the values valid
 					if (animation.m_frameAccumulator >= maxFrames || animation.m_frameAccumulator <= 0)
 					{
 						animation.currentFrame = 0;
@@ -69,19 +73,13 @@ namespace lshe
 				auto curFrameX = animation.currentFrame % animationState->frameAmount.x;
 				auto curFrameY = animation.currentFrame / animationState->frameAmount.x;
 				
+				// calculate texture rect
 				sf::IntRect rect(sf::Vector2i(animationState->startPosition.x + animation.frameSize.x * curFrameX,
 					animationState->startPosition.y + animation.frameSize.y * curFrameY),
 					sf::Vector2i(animation.frameSize));
 				sprite.setTextureRect(rect);
 			}
 		}
-	}
-	void AnimationSystem::animateForward()
-	{
-	}
-
-	void AnimationSystem::animateBackward()
-	{
 	}
 }
 

@@ -12,5 +12,10 @@ namespace lshe
 #endif // ANAX_VIRTUAL_DTORS_IN_COMPONENT
 
 		sf::Transformable transform;
+
+	private:
+		friend class SpriteRenderingSystem;
+		sf::Transformable m_oldTransform;
+		bool initialized = false;
 	};
 }

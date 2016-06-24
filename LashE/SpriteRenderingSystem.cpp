@@ -4,26 +4,32 @@
 
 namespace lshe
 {
-	void SpriteRenderingSystem::draw(sf::RenderTarget& renderTarget, sf::RenderStates& states) const
+	void SpriteRenderingSystem::draw(sf::RenderTarget & renderTarget, float alpha) const
 	{
 		auto entities = getEntities();
 
 		for (auto& entity : entities)
 		{
 			auto& sprite = entity.getComponent<SpriteComponent>().sprite;
-			auto& transform = entity.getComponent<TransformComponent>().transform;
+			auto& transform = entity.getComponent<TransformComponent>();
 
-			
+			if (!transform.initialized)
+			{
+				transform.m_oldTransform = transform.m_oldTransform;
+				transform.initialized = true;
+			}
+			auto pos = transform.transform.getPosition() * alpha + transform.m_oldTransform.getPosition() * (1.0f - alpha);
 
-				
-			sprite.setPosition(transform.getPosition());
-			sprite.setOrigin(transform.getOrigin());
-			sprite.setRotation(transform.getRotation());
-			sprite.setScale(transform.getScale());
+			// set sprites transform from transform component	
+			sprite.setPosition(pos);
+			sprite.setOrigin(transform.transform.getOrigin());
+			sprite.setRotation(transform.transform.getRotation());
+			sprite.setScale(transform.transform.getScale());
 
-			renderTarget.draw(sprite, states);
+			renderTarget.draw(sprite);
 
-			//render.draw(sprite, transform.getTransform());
+			transform.m_oldTransform = transform.transform;
 		}
+
 	}
 }

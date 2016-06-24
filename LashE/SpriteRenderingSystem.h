@@ -15,6 +15,6 @@ namespace lshe
 	class SpriteRenderingSystem : public anax::System<anax::Requires<SpriteComponent, TransformComponent>>
 	{
 	public:
-		void draw(sf::RenderTarget& renderTarget, sf::RenderStates& states) const;
+		void draw(sf::RenderTarget& renderTarget, float alpha) const;
 	};
 }

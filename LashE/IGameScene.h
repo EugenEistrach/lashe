@@ -10,7 +10,7 @@ namespace lshe
 {
 	//class IGame;
 
-	class IGameScene : public sf::Drawable
+	class IGameScene
 	{
 	public:
 		IGameScene(const IGameScene&) = delete;
@@ -23,6 +23,7 @@ namespace lshe
 		virtual void processEvent(const sf::Event& evt) = 0;
 		virtual void processEvents() = 0;
 		virtual void update(sf::Time deltaTime) = 0;
+		virtual void draw(sf::RenderTarget& renderTarget, float alpha) const = 0;
 		virtual void unload() = 0;
 
 	protected:
@@ -30,6 +31,8 @@ namespace lshe
 
 	private:
 		friend class SceneManager;
+
+	
 		void updateEntityWorld() { m_EntityWorld.refresh(); }
 
 		//IGame* m_gamePtr;

@@ -13,6 +13,7 @@ namespace lshe
 			
 			if (velocity != sf::Vector2f(0.f, 0.f))
 			{
+				// Set direction if required
 				if (entity.hasComponent<DirectionComponent>())
 				{
 					entity.getComponent<DirectionComponent>().setDirFromVec(velocity);
